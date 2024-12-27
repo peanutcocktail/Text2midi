@@ -5,7 +5,7 @@ input_text = gr.Textbox(lines=2, label="Prompt")
 output_audio = gr.Audio(label="Generated Music", type="filepath")
 output_midi = gr.File(label="Download MIDI File")
 temperature = gr.Slider(minimum=0.9, maximum=1.1, value=1.0, step=0.01, label="Temperature", interactive=True)
-max_length = gr.Number(value=1500, label="Max Length", minimum=500, maximum=2000, step=100)
+max_length = gr.Number(value=800, label="Max Length", minimum=500, maximum=2000, step=100)
 app = gr.Interface(
     fn=test_generate,
     inputs=[input_text, temperature, max_length],
