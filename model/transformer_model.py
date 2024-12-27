@@ -1391,7 +1391,7 @@ def test_generate(caption, temperature, max_length):
         print("Using CPU")
 
     artifact_folder = '../artifacts'
-    tokenizer_filepath = os.path.join(artifact_folder, "vocab_remi.pkl")
+    tokenizer_filepath = os.path.abspath(os.path.join(artifact_folder, "vocab_remi.pkl"))
     caption_dataset_path = '/root/text2midi/captions/train.json'
     print(f'caption_dataset_path: {caption_dataset_path}')
 
