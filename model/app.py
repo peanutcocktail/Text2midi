@@ -1,6 +1,6 @@
 import gradio as gr
 import os
-from model.transformer_model import test_generate
+from transformer_model import test_generate
 input_text = gr.Textbox(lines=2, label="Prompt")
 output_audio = gr.Audio(label="Generated Music", type="filepath")
 output_midi = gr.File(label="Download MIDI File")
