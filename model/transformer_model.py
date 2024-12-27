@@ -1378,7 +1378,7 @@ def process_caption(gpu_id, captions, model, tokenizer, r_tokenizer):
 #         # print(type(generated_midi))
 #         generated_midi.dump_midi(f"../res/{location}")
 
-def test_generate(caption):
+def test_generate(caption, temperature, max_length):
     # Detect device: CUDA, MPS, or CPU
     if torch.cuda.is_available():
         device = torch.device("cuda")
@@ -1438,12 +1438,13 @@ def test_generate(caption):
     input_ids = input_ids.to(device)
     attention_mask = nn.utils.rnn.pad_sequence(inputs.attention_mask, batch_first=True, padding_value=0)
     attention_mask = attention_mask.to(device)
-    output = model.generate(input_ids, attention_mask, max_len=2000, temperature=0.9)
+    output = model.generate(input_ids, attention_mask, max_len=max_length, temperature=temperature)
     output_list = output[0].tolist()
 
     # Decode and save MIDI
     generated_midi = r_tokenizer.decode(output_list)
-    generated_midi.dump_midi(f"../../output_christmas_2.mid")
+    generated_midi.dump_midi(f"../output.mid")
+    return os.path.abspath(f"../output.mid")
 
 def load_model_and_tokenizer(accelerator, model_path, vocab_size, tokenizer_filepath):
     device = accelerator.device
