@@ -1403,7 +1403,7 @@ def test_generate(caption, temperature, max_length):
 
     # Initialize model
     model = Transformer(vocab_size, 768, 8, 2048, 18, 1024, False, 8, device=device)
-    model.load_state_dict(torch.load('/root/test/text2midi/output_new/epoch_30/pytorch_model.bin', map_location=device))
+    model.load_state_dict(torch.load('../ckpt/pytorch_model.bin', map_location=device))
     model.to(device)  # Move model to detected device
     model.eval()
 
