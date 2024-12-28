@@ -7,13 +7,11 @@ output_midi = gr.File(label="Download MIDI File")
 temperature = gr.Slider(minimum=0.9, maximum=1.1, value=1.0, step=0.01, label="Temperature", interactive=True)
 max_length = gr.Number(value=800, label="Max Length", minimum=300, maximum=2000, step=100)
 player = gr.HTML("")
-head = """
-<script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>"""
+head = """<script src="/gradio_api/file=html-midi-player.js"></script>"""
 def generate(input_text, temperature, max_length):
     res = test_generate(input_text, temperature, max_length)
     print(f"res={res}")
-    player = """<midi-player src="/gradio_api/file=output.mid" sound-font visualizer="#myVisualizer"></midi-player>
-<midi-visualizer type="piano-roll" id="myVisualizer"></midi-visualizer>"""
+    player = """<midi-player src="/gradio_api/file=output.mid" sound-font></midi-player>"""
     return player, res
 app = gr.Interface(
     head=head,
