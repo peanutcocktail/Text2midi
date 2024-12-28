@@ -1443,8 +1443,8 @@ def test_generate(caption, temperature, max_length):
 
     # Decode and save MIDI
     generated_midi = r_tokenizer.decode(output_list)
-    generated_midi.dump_midi(f"../output.mid")
-    return os.path.abspath(f"../output.mid")
+    generated_midi.dump_midi(f"output.mid")
+    return os.path.abspath(f"output.mid")
 
 def load_model_and_tokenizer(accelerator, model_path, vocab_size, tokenizer_filepath):
     device = accelerator.device
