@@ -1410,9 +1410,9 @@ def initialize():
     # Prepare input
     tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-base")
 
-    return r_tokenizer, tokenizer, model
+    return device, r_tokenizer, tokenizer, model
 
-def test_generate(r_tokenizer, tokenizer, model, caption, temperature, max_length):
+def test_generate(device, r_tokenizer, tokenizer, model, caption, temperature, max_length):
     
     '''
     # num_gpus = torch.cuda.device_count()
