@@ -1447,8 +1447,11 @@ def test_generate(device, r_tokenizer, tokenizer, model, caption, temperature, m
 
     # Decode and save MIDI
     generated_midi = r_tokenizer.decode(output_list)
-    generated_midi.dump_midi(f"output.mid")
-    return os.path.abspath(f"output.mid")
+    unique_id = str(int(time.time() * 1000))
+
+    generated_midi.dump_midi(f"{unique_id}.mid")
+    filename = f"{unique_id}.mid"
+    return filename, os.path.abspath(filename)
 
 def load_model_and_tokenizer(accelerator, model_path, vocab_size, tokenizer_filepath):
     device = accelerator.device

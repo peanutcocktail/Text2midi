@@ -10,10 +10,9 @@ player = gr.HTML("")
 head = """<script src="/gradio_api/file=html-midi-player.js"></script>"""
 device, r_tokenizer, tokenizer, model = initialize()
 def generate(input_text, temperature, max_length):
-    res = test_generate(device, r_tokenizer, tokenizer, model, input_text, temperature, max_length)
-    print(f"res={res}")
-    player = """<midi-player src="/gradio_api/file=output.mid" sound-font></midi-player>"""
-    return player, res
+    filename, filepath = test_generate(device, r_tokenizer, tokenizer, model, input_text, temperature, max_length)
+    player = """<midi-player src="/gradio_api/file={filename}" sound-font></midi-player>"""
+    return player, filepath
 app = gr.Interface(
     head=head,
     fn=generate,
