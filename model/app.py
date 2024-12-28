@@ -1,6 +1,6 @@
 import gradio as gr
 import os
-from transformer_model import test_generate
+from transformer_model import test_generate, initialize
 input_text = gr.Textbox(lines=2, label="Prompt")
 output_audio = gr.Audio(label="Generated Music", type="filepath")
 output_midi = gr.File(label="Download MIDI File")
@@ -8,8 +8,9 @@ temperature = gr.Slider(minimum=0.9, maximum=1.1, value=1.0, step=0.01, label="T
 max_length = gr.Number(value=800, label="Max Length", minimum=300, maximum=2000, step=100)
 player = gr.HTML("")
 head = """<script src="/gradio_api/file=html-midi-player.js"></script>"""
+r_tokenizer, tokenizer, model = initialize()
 def generate(input_text, temperature, max_length):
-    res = test_generate(input_text, temperature, max_length)
+    res = test_generate(r_tokenizer, tokenizer, model, input_text, temperature, max_length)
     print(f"res={res}")
     player = """<midi-player src="/gradio_api/file=output.mid" sound-font></midi-player>"""
     return player, res
