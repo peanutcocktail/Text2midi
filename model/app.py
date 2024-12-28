@@ -26,7 +26,7 @@ app = gr.Interface(
         ["An energetic and melodic electronic trance track with a space and retro vibe, featuring drums, distortion guitar, flute, synth bass, and slap bass. Set in A minor with a fast tempo of 138 BPM, the song maintains a 4/4 time signature throughout its duration.", 1.0, 800],
         ["A short but energetic rock fragment in C minor, featuring overdriven guitars, electric bass, and drums, with a vivacious tempo of 155 BPM and a 4/4 time signature, evoking a blend of dark and melodic tones.", 1.0, 800],
     ],
-    cache_examples="lazy",
+    #cache_examples="lazy",
     css=".example-caption { text-align: left; }"
 )
 app.launch()
