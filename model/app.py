@@ -12,7 +12,7 @@ head = """
 def generate(input_text, temperature, max_length):
     res = test_generate(input_text, temperature, max_length)
     print(f"res={res}")
-    player = """<midi-player src="/gradio_app/file=output.mid" sound-font visualizer="#myVisualizer"></midi-player>
+    player = """<midi-player src="/gradio_api/file=output.mid" sound-font visualizer="#myVisualizer"></midi-player>
 <midi-visualizer type="piano-roll" id="myVisualizer"></midi-visualizer>"""
     return player, res
 app = gr.Interface(
