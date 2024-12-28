@@ -12,12 +12,12 @@ device, r_tokenizer, tokenizer, model = initialize()
 def generate(input_text, temperature, max_length):
     filename, filepath = test_generate(device, r_tokenizer, tokenizer, model, input_text, temperature, max_length)
     player = f"""<midi-player src="/gradio_api/file={filename}" sound-font></midi-player>"""
-    return player, filepath
+    return filepath, player
 app = gr.Interface(
     head=head,
     fn=generate,
     inputs=[input_text, temperature, max_length],
-    outputs=[player, output_midi],
+    outputs=[output_midi, player],
     examples=[
         ["A haunting electronic ambient piece that evokes a sense of darkness and space, perfect for a film soundtrack. The string ensemble, trumpet, piano, timpani, and synth pad weave together to create a meditative atmosphere. Set in F minor with a 4/4 time signature, the song progresses at an Andante tempo, with the chords F, Fdim, and F/C recurring throughout.", 1.0, 800],
         ["A slow and emotional classical piece, likely used in a film soundtrack, featuring a church organ as the sole instrument. Written in the key of Eb major with a 3/4 time signature, it evokes a sense of drama and romance. The chord progression of Bb7, Eb, and Ab contributes to the relaxing atmosphere throughout the song.", 1.0, 800],
